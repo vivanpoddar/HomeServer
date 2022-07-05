@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="864c8599-6031-4b56-bb2a-1c733e974c45" name="Changes" comment="file transfer" />
+    <list default="true" id="864c8599-6031-4b56-bb2a-1c733e974c45" name="Changes" comment="File save tests">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -88,7 +91,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657046148472</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="File save tests">
+      <created>1657046822941</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1657046822941</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -111,6 +121,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first tests" />
     <MESSAGE value="file transfer" />
-    <option name="LAST_COMMIT_MESSAGE" value="file transfer" />
+    <MESSAGE value="File save tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="File save tests" />
   </component>
 </project>

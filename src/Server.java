@@ -19,16 +19,16 @@ public class Server {
             while (!line.equals("Over")) {
                 try {
                     line = in.readUTF();
+                    fw = new FileWriter("file.txt");
+                    fw.write(line);
                     System.out.println(line);
-                    FileWriter fr = new FileWriter("file.txt");
-                    fr.write(line);
-                    fr.close();
                 } catch (IOException i) {
                     System.out.println(i);
                 }
             }
             System.out.println("Closing connection");
 
+            fw.close();
             socket.close();
             in.close();
         } catch (IOException e) {
