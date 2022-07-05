@@ -20,7 +20,9 @@ public class Server {
                 try {
                     line = in.readUTF();
                     System.out.println(line);
-
+                    FileWriter fr = new FileWriter("file.txt");
+                    fr.write(line);
+                    fr.close();
                 } catch (IOException i) {
                     System.out.println(i);
                 }
