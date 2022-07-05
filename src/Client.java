@@ -24,10 +24,23 @@ public class Client {
         while(!line.equals("Over")) {
             try {
                 line = input.readLine();
-                out.writeUTF(line);
+                BufferedReader reader = new BufferedReader(new FileReader(line));
+                String documentLine = reader.readLine();
+                while(documentLine!=null) {
+                    out.writeUTF(documentLine);
+                    documentLine = reader.readLine();
+                }
+                reader.close();
+
             } catch(IOException i) {
                 System.out.println(i);
             }
+        }
+
+        try {
+            out.writeUTF("Over");
+        } catch (IOException e) {
+            System.out.println(e);
         }
 
         try {
@@ -40,6 +53,6 @@ public class Client {
     }
 
     public static void main (String[] args) {
-        Client client = new Client("127.0.0.1", 5000);
+        Client client = new Client("10.0.0.34", 5000);
     }
 }

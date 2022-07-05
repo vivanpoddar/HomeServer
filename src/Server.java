@@ -5,6 +5,7 @@ public class Server {
     Socket socket = null;
     ServerSocket server = null;
     DataInputStream in = null;
+    FileWriter fw = null;
 
     public Server(int port) {
         try {
@@ -13,13 +14,26 @@ public class Server {
             socket = server.accept();
             System.out.println("Client accepted");
             in = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
-
             String line = "";
 
             while (!line.equals("Over")) {
                 try {
                     line = in.readUTF();
                     System.out.println(line);
+                    try {
+                        File file = new File("/home/vivanp/Documents/file.txt");
+                        if (file.createNewFile()) {
+                            fw = new FileWriter("file.txt");
+                            System.out.println("Created file");
+                            System.out.println("Writing to file");
+                            fw.write(in.readUTF());
+                        } else {
+                            System.out.println("File already exists.");
+                        }
+                    } catch (IOException e) {
+                        System.out.println("An error occurred.");
+                        e.printStackTrace();
+                    }
                 } catch (IOException i) {
                     System.out.println(i);
                 }
