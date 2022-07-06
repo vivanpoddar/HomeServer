@@ -4,11 +4,19 @@ import java.net.*;
 public class Client {
     public static void main(String[] args) throws IOException {
         Socket socket = null;
-        String host = "10.0.0.34";
+        DataInputStream input = new DataInputStream(System.in);
+        System.out.println("Select destination computer");
+        String host = String.valueOf(input.readLine());
+        System.out.println("Select destination port");
+        int port = Integer.parseInt(String.valueOf(input.readLine()));
 
-        socket = new Socket(host, 5000);
+        socket = new Socket(host, port);
+        System.out.println("Connected to " + host + ":" + port);
+        DataOutputStream output = new DataOutputStream(socket.getOutputStream());
 
-        File file = new File("/Users/vpoddar/Downloads/s-l1600-2.jpg");
+        System.out.println("File pathname");
+        String pathname = String.valueOf(input.readLine());
+        File file = new File(pathname);
         // Get the size of the file
         long length = file.length();
         byte[] bytes = new byte[16 * 1024];
