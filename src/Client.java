@@ -2,59 +2,26 @@ import java.io.*;
 import java.net.*;
 
 public class Client {
-    Socket socket = null;
-    InputStream input = null;
-    FileOutputStream out = null;
+    public static void main(String[] args) throws IOException {
+        Socket socket = null;
+        String host = "127.0.0.1";
 
-    public Client(String address, int port) {
-        try {
-            socket = new Socket(address, port);
-            System.out.println("Connected to " + address + ":" + port);
+        socket = new Socket(host, 4444);
 
-            input = new FileInputStream(String.valueOf(System.in));
-            out = new FileOutputStream(String.valueOf(socket.getOutputStream()));
-        } catch (UnknownHostException u) {
-            System.out.println(u);
-        } catch (IOException e) {
-            System.out.println(e);
+        File file = new File("M:\\test.xml");
+        // Get the size of the file
+        long length = file.length();
+        byte[] bytes = new byte[16 * 1024];
+        InputStream in = new FileInputStream(file);
+        OutputStream out = socket.getOutputStream();
+
+        int count;
+        while ((count = in.read(bytes)) > 0) {
+            out.write(bytes, 0, count);
         }
 
-        String line = "";
-
-        /*
-        while(!line.equals("Over")) {
-            try {
-                line = input.readLine();
-                BufferedReader reader = new BufferedReader(new FileReader(line));
-                String documentLine = reader.readLine();
-                while(documentLine!=null) {
-                    out.writeUTF(documentLine);
-                    documentLine = reader.readLine();
-                }
-                reader.close();
-
-            } catch(IOException i) {
-                System.out.println(i);
-            }
-        }
-
-        try {
-            out.writeUTF("Over");
-        } catch (IOException e) {
-            System.out.println(e);
-        }
-    */
-        try {
-            input.close();
-            out.close();
-            socket.close();
-        } catch (IOException e) {
-            System.out.println(e);
-        }
-
-    }
-
-    public static void main (String[] args) {
-        Client client = new Client("10.0.0.34", 5000);
+        out.close();
+        in.close();
+        socket.close();
     }
 }

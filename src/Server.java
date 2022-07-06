@@ -2,31 +2,47 @@ import java.io.*;
 import java.net.*;
 
 public class Server {
-    Socket socket = null;
-    ServerSocket server = null;
-    FileInputStream in = null;
-    FileOutputStream fout = null;
+    public static void main(String[] args) throws IOException {
+        ServerSocket serverSocket = null;
 
-    public Server(int port) {
         try {
-            server = new ServerSocket(port);
-            System.out.println("Server started\nWaiting for client");
-            socket = server.accept();
-            System.out.println("Client accepted");
-            in = new FileInputStream(String.valueOf(socket.getInputStream()));
-            String line = "";
-            fout = new FileOutputStream("/home/vivanp/Downloads/HomeServer/src/file.txt");
-            fout.write(in.readAllBytes());
-            fout.close();
-            in.close();
-
-
-        } catch (IOException e) {
-            System.out.println(e);
+            serverSocket = new ServerSocket(4444);
+        } catch (IOException ex) {
+            System.out.println("Can't setup server on this port number. ");
         }
-    }
 
-    public static void main(String[] args) {
-        Server server = new Server(5000);
+        Socket socket = null;
+        InputStream in = null;
+        OutputStream out = null;
+
+        try {
+            socket = serverSocket.accept();
+        } catch (IOException ex) {
+            System.out.println("Can't accept client connection. ");
+        }
+
+        try {
+            in = socket.getInputStream();
+        } catch (IOException ex) {
+            System.out.println("Can't get socket input stream. ");
+        }
+
+        try {
+            out = new FileOutputStream("M:\\test2.xml");
+        } catch (FileNotFoundException ex) {
+            System.out.println("File not found. ");
+        }
+
+        byte[] bytes = new byte[16*1024];
+
+        int count;
+        while ((count = in.read(bytes)) > 0) {
+            out.write(bytes, 0, count);
+        }
+
+        out.close();
+        in.close();
+        socket.close();
+        serverSocket.close();
     }
 }
