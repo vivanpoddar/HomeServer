@@ -5,7 +5,6 @@ public class Server {
     Socket socket = null;
     ServerSocket server = null;
     DataInputStream in = null;
-    FileWriter fw = null;
 
     public Server(int port) {
         try {
@@ -15,12 +14,14 @@ public class Server {
             System.out.println("Client accepted");
             in = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
             String line = "";
+            BufferedWriter bw = new BufferedWriter(new FileWriter("/Users/vivanp/Documents/HomeServer/src/file.txt"));
 
             while (!line.equals("Over")) {
                 try {
                     line = in.readUTF();
-                    fw = new FileWriter("file.txt");
-                    fw.write(line);
+                    bw.write(line+"\n");
+
+
                     System.out.println(line);
                 } catch (IOException i) {
                     System.out.println(i);
@@ -28,7 +29,7 @@ public class Server {
             }
             System.out.println("Closing connection");
 
-            fw.close();
+            bw.close();
             socket.close();
             in.close();
         } catch (IOException e) {
