@@ -4,11 +4,11 @@ import java.net.*;
 public class Client {
     public static void main(String[] args) throws IOException {
         Socket socket = null;
-        String host = "127.0.0.1";
+        String host = "10.0.0.34";
 
-        socket = new Socket(host, 4444);
+        socket = new Socket(host, 5000);
 
-        File file = new File("M:\\test.xml");
+        File file = new File("/Users/vpoddar/Downloads/s-l1600-2.jpg");
         // Get the size of the file
         long length = file.length();
         byte[] bytes = new byte[16 * 1024];
