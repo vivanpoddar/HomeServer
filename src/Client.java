@@ -3,16 +3,16 @@ import java.net.*;
 
 public class Client {
     Socket socket = null;
-    DataInputStream input = null;
-    DataOutputStream out = null;
+    InputStream input = null;
+    FileOutputStream out = null;
 
     public Client(String address, int port) {
         try {
             socket = new Socket(address, port);
             System.out.println("Connected to " + address + ":" + port);
 
-            input = new DataInputStream(System.in);
-            out = new DataOutputStream(socket.getOutputStream());
+            input = new FileInputStream(String.valueOf(System.in));
+            out = new FileOutputStream(String.valueOf(socket.getOutputStream()));
         } catch (UnknownHostException u) {
             System.out.println(u);
         } catch (IOException e) {
@@ -21,6 +21,7 @@ public class Client {
 
         String line = "";
 
+        /*
         while(!line.equals("Over")) {
             try {
                 line = input.readLine();
@@ -42,7 +43,7 @@ public class Client {
         } catch (IOException e) {
             System.out.println(e);
         }
-
+    */
         try {
             input.close();
             out.close();
@@ -50,6 +51,7 @@ public class Client {
         } catch (IOException e) {
             System.out.println(e);
         }
+
     }
 
     public static void main (String[] args) {
