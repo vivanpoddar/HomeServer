@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="864c8599-6031-4b56-bb2a-1c733e974c45" name="Changes" comment="working file transfer">
+    <list default="true" id="864c8599-6031-4b56-bb2a-1c733e974c45" name="Changes" comment="file selection">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client.java" afterDir="false" />
     </list>
@@ -43,6 +43,7 @@
     <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Client" />
       <module name="HomeServer" />
+      <option name="PROGRAM_PARAMETERS" value="10.0.0.34 5000 $USER_HOME$/Downloads/Sri-Ramakrishna.jpg" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -54,6 +55,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Client" />
+      <item itemvalue="Application.Server" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Client" />
@@ -112,7 +117,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657125159591</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="file selection">
+      <created>1657126771634</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1657126771634</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -138,6 +150,7 @@
     <MESSAGE value="File save tests" />
     <MESSAGE value="debugging" />
     <MESSAGE value="working file transfer" />
-    <option name="LAST_COMMIT_MESSAGE" value="working file transfer" />
+    <MESSAGE value="file selection" />
+    <option name="LAST_COMMIT_MESSAGE" value="file selection" />
   </component>
 </project>
