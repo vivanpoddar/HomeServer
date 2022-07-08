@@ -7,6 +7,7 @@ public class Server {
 
         try {
             serverSocket = new ServerSocket(5000);
+            System.out.println("Server started.");
         } catch (IOException ex) {
             System.out.println("Can't setup server on this port number. ");
         }
@@ -14,9 +15,11 @@ public class Server {
         Socket socket = null;
         InputStream in = null;
         OutputStream out = null;
+        DataInputStream din = null;
 
         try {
             socket = serverSocket.accept();
+            System.out.println("Connected to " + serverSocket.getInetAddress());
         } catch (IOException ex) {
             System.out.println("Can't accept client connection. ");
         }
@@ -28,7 +31,12 @@ public class Server {
         }
 
         try {
-            out = new FileOutputStream("M:\\test2.xml");
+            din = new DataInputStream(socket.getInputStream());
+            String[] msg = din.readUTF().split("\\s+");
+            if(msg[0] == "target") {
+                String fout = msg[1];
+            }
+            out = new FileOutputStream(msg[1]);
         } catch (FileNotFoundException ex) {
             System.out.println("File not found. ");
         }
