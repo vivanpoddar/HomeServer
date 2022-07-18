@@ -16,6 +16,7 @@ public class Server {
         InputStream in = null;
         OutputStream out = null;
         DataInputStream din = null;
+        String path = null;
 
         try {
             socket = serverSocket.accept();
@@ -30,22 +31,24 @@ public class Server {
             System.out.println("Can't get socket input stream. ");
         }
 
-        try {
-            din = new DataInputStream(socket.getInputStream());
-            String[] msg = din.readUTF().split("\\s+");
-            if(msg[0] == "target") {
-                String fout = msg[1];
+        while(din.readUTF() != "over") {
+            try {
+                din = new DataInputStream(socket.getInputStream());
+                String[] msg = din.readUTF().split("\\s+");
+                if (msg[0] == "target") {
+                    path = msg[1];
+                } else if (msg.length == 1) {
+                    out = new FileOutputStream(path);
+                    byte[] bytes = new byte[16*1024];
+
+                    int count;
+                    while ((count = in.read(bytes)) > 0) {
+                        out.write(bytes, 0, count);
+                    }
+                }
+            } catch (FileNotFoundException ex) {
+                System.out.println("File not found. ");
             }
-            out = new FileOutputStream(msg[1]);
-        } catch (FileNotFoundException ex) {
-            System.out.println("File not found. ");
-        }
-
-        byte[] bytes = new byte[16*1024];
-
-        int count;
-        while ((count = in.read(bytes)) > 0) {
-            out.write(bytes, 0, count);
         }
 
         out.close();

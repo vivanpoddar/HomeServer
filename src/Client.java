@@ -15,7 +15,6 @@ public class Client {
         output.writeUTF(line);
 
         File file = new File(String.valueOf(args[2]));
-        // Get the size of the file
         long length = file.length();
         byte[] bytes = new byte[16 * 1024];
         InputStream in = new FileInputStream(file);
